@@ -1,5 +1,5 @@
 # Archi-chat
-This is a two-day project being the first step for building a chat that can help architects to get easier and verified information from Polish construction law giving them more time for the fun stuff! 
+This is a two-day project, being the first step for building a chat that can help architects get easier and verified information from Polish construction law, giving them more time for the fun stuff! 
 
 ## Context
 GPT sometimes messes up with answering the question about construction law but this tool allows the user to prompt a model and get the answer with the context from 
