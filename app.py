@@ -15,8 +15,8 @@ from langchain_core.documents import Document
 from config import local, keywords, questions, parameters, paths
 from src import data_loading
 
-class ArchiRAGSystem:
-    """RAG based on pdf."""
+class ArchiChat:
+    """Gemini RAG based on with a pdf of construction law of stated in Poland."""
 
     def __init__(self, api_key: str, vectorstore_path: str = "./vectorstore"):
         """
@@ -43,26 +43,6 @@ class ArchiRAGSystem:
         )
 
         self.vectorstore = None
-
-    def prettify_text(self, text):
-        # removing page headers
-
-        # removing right margin change notes
-
-        pass
-
-    def load_pdf_chapter_as_documents(self, filepath, txt_file_output=None, binary_txt_save=False):
-        with pymupdf.open(filepath) as pdf:
-            text = "".join([page.get_text() for page in pdf.pages()])
-
-        if txt_file_output:
-            with open(txt_file_output, "w", encoding='utf-8') as txt_file:
-                txt_file.write(text)
-
-        chapter_split = text.split(keywords.CHAPTER_SEP)
-        chapter_docs = [Document(keywords.CHAPTER_SEP + chapter_text) for chapter_text in chapter_split]
-
-        return chapter_docs
 
     def load_and_index_document(self, file_path: str, chunk_size: int = 200, chunk_overlap: int = 20):
         """
@@ -165,7 +145,7 @@ if __name__ == "__main__":
     VECTORSTORE_PATH = os.path.join(paths.VECTORSTORE_DIR, vectorstore_dir_name)
 
     # Initialize RAG system
-    rag = ArchiRAGSystem(api_key=local.GENAI_API_KEY, vectorstore_path=VECTORSTORE_PATH)
+    rag = ArchiChat(api_key=local.GENAI_API_KEY, vectorstore_path=VECTORSTORE_PATH)
 
     # Check if vector store exists, otherwise create it
     if os.path.exists(VECTORSTORE_PATH):
