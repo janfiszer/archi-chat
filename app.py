@@ -3,16 +3,16 @@ Simple RAG (Retrieval Augmented Generation) system using Google Gemini.
 Reads a text file, creates embeddings, and answers questions using context.
 """
 import os
-import pymupdf
+import sys
 from pathlib import Path
 
 from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
 from langchain_community.vectorstores import FAISS
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain.messages import HumanMessage
-from langchain_core.documents import Document
 
-from config import local, keywords, questions, parameters, paths
+from config import local, keywords, parameters, paths
+import example_questions
 from src import data_loading
 
 class ArchiChat:
@@ -154,7 +154,12 @@ if __name__ == "__main__":
         print("Creating new vector store...")
         rag.load_and_index_document(context_filepath, parameters.CHUNK_SIZE, parameters.CHUNK_OVERLAP)
 
-    question = questions.art_45b_question_yes_no_1
+    # Get question from command line argument or use default
+    if len(sys.argv) > 1:
+        question = sys.argv[1]
+    else:
+        question = example_questions.art_45b_question_yes_no_1
+
     answer = rag.search_and_answer(question, top_k=parameters.NUM_CONTEXT_CHUNKS)
 
     print(f"Pytanie: {question}")
