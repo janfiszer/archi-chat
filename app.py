@@ -134,24 +134,23 @@ class ArchiChat:
         return response.content
 
 
-# Main execution
 if __name__ == "__main__":
-    # Configuration
+    # Paths
     context_filepath = paths.CONTEXT_FILEPATH
     vectorstore_dir_name = f"{Path(context_filepath).stem}_{parameters.EMBEDDING_MODEL}_chunk_size{parameters.CHUNK_SIZE}_overlap{parameters.CHUNK_OVERLAP}"
-    VECTORSTORE_PATH = os.path.join(paths.VECTORSTORE_DIR, vectorstore_dir_name)
+    vectorstore_database_path = os.path.join(paths.VECTORSTORE_DIR, vectorstore_dir_name)
 
-    # Initialize RAG system
-    rag = ArchiChat(api_key=local.GENAI_API_KEY, vectorstore_path=VECTORSTORE_PATH)
+    # Initialize RAG
+    rag = ArchiChat(api_key=local.GENAI_API_KEY, vectorstore_path=vectorstore_database_path)
 
     # Check if vector store exists, otherwise create it
-    if os.path.exists(VECTORSTORE_PATH):
+    if os.path.exists(vectorstore_database_path):
         rag.load_vectorstore()
     else:
         print("Creating new vector store...")
         rag.load_and_index_document(context_filepath, parameters.CHUNK_SIZE, parameters.CHUNK_OVERLAP)
 
-    # Get question from command line argument or use default
+    # Get question from command line argument or use one of preselected ones
     if len(sys.argv) > 1:
         question = sys.argv[1]
     else:
