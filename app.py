@@ -1,7 +1,3 @@
-"""
-Simple RAG (Retrieval Augmented Generation) system using Google Gemini.
-Reads a text file, creates embeddings, and answers questions using context.
-"""
 import os
 import sys
 from pathlib import Path
@@ -98,7 +94,8 @@ class ArchiChat:
 
     def search_and_answer(self, query: str, top_k: int = 1) -> str:
         """
-        Search for relevant documents and generate an answer.
+        This is the key function, having the vector database `self.vectorstore`
+        it finds the relevant chunks and generated the answer.
 
         Args:
             query: User's question

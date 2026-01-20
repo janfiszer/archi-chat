@@ -1,7 +1,6 @@
 import pymupdf
 
 from pathlib import Path
-from langchain_community.document_loaders import PyPDFLoader
 from langchain_core.documents import Document
 from langchain_community.document_loaders import TextLoader
 
@@ -24,6 +23,13 @@ def load_context_file(file_path):
 
 
 def load_pdf_chapter_as_documents(filepath, txt_file_output=None, clean_pdf_text=True):
+    """
+    Loads the whole text from the pdf, cleans it and (optionally) saves it as txt_file_output.
+    :param filepath: file path to the pdf
+    :param txt_file_output: file path to the output txt file
+    :param clean_pdf_text: a flag to clean the text before saving it as txt_file_output
+    :return: Documents instances (one for each chapter) based on config.keywords.CHAPTER_SEP
+    """
     with pymupdf.open(filepath) as pdf:
         text = "".join([page.get_text() for page in pdf.pages()])
 

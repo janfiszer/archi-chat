@@ -15,13 +15,8 @@ def remove_pattern_with_logging(
     Args:
         text: The text to clean
         pattern: Regex pattern to search for and remove
-        pattern_name: Descriptive name for the pattern (for logging)
         flags: Regex flags (e.g., re.DOTALL, re.IGNORECASE)
         verbose: If True, print what was removed to console
-
-    Returns:
-        Tuple of (cleaned_text, removed_items)
-        removed_items is a list of all strings that matched the pattern
     """
     # Find all matches before removing
     removed_items = re.findall(pattern, text, flags=flags)
