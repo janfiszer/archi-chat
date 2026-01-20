@@ -7,26 +7,23 @@ GPT sometimes messes up with answering the question about construction law but t
 Currently tested with an architect with 15-years professional experience...
 
 ## Installation
-# PDF Vector Database - Installation Guide
 
 This project creates a vector database from PDF files using Google's Gemini embedding API and ChromaDB for semantic search.
 
-## Prerequisites
+Prerequisites
 
 - Python 3.12 or higher
 - Git
 - Google AI API key ([Get one here](https://docs.cloud.google.com/docs/authentication/api-keys))
 
-## Installation Steps
-
 ### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/janfiszer/archi-chat.git
-cd your-repo-name
+cd archi-chat
 ```
 
-### 2. Create a Virtual Environment (Recommended)
+### 2. Create venv
 
 **On macOS/Linux:**
 ```bash
