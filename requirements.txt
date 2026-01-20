@@ -1,0 +1,6 @@
+langchain_google_genai==4.2.0
+langchain==1.2.6
+langchain_community==0.4.1
+faiss_cpu==1.13.2
+pypdf==6.6.0
+pymupdf==1.26.7
