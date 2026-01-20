@@ -4,6 +4,8 @@
 GPT sometimes messes up with answering the question about construction law but this tool allows the user to prompt a model and get the answer with the context from 
 [Polish construction law](https://isap.sejm.gov.pl/isap.nsf/download.xsp/WDU19940890414/U/D19940414Lj.pdf).
 
+Currently tested with an architect with 15-years professional experience...
+
 ## Installation
 # PDF Vector Database - Installation Guide
 
@@ -51,31 +53,12 @@ Most importantly:
 1. Google api key: `API_KEY` in `.config/local.py`
 2. Input context file: `CONTEXT_FILEPATH` in `.config/paths.py` 
 
-The other parameters are tuned for current application.   
-Create a `.env` file in the project root directory or set your Google AI API key directly in the code:
-
-```bash
-# Option 1: Using .env file (recommended)
-echo "GOOGLE_AI_API_KEY=your-api-key-here" > .env
-```
-
-Or edit `app.py` and replace:
-```python
-API_KEY = "your-google-ai-api-key-here"
-```
-
-### 5. Add Your PDF File
-
-Place your PDF file in the project directory and update the path in `app.py`:
-
-```python
-PDF_PATH = "your-document.pdf"
-```
+The other parameters are tuned for current application, but feel free to experiment.   
 
 ### 6. Run the Application
 
 ```bash
-python app.py
+python app.py "Czy na tablicy informacyjnej określa się adres inwestora?" 
 ```
 
 
