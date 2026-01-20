@@ -6,7 +6,7 @@ from langchain_core.documents import Document
 from langchain_community.document_loaders import TextLoader
 
 from config import keywords
-
+from src.preprocess import clean_raw_text_from_pdf
 
 def load_context_file(file_path):
     pathlib_filepath = Path(file_path)
@@ -23,9 +23,12 @@ def load_context_file(file_path):
     return documents
 
 
-def load_pdf_chapter_as_documents(filepath, txt_file_output=None):
+def load_pdf_chapter_as_documents(filepath, txt_file_output=None, clean_pdf_text=True):
     with pymupdf.open(filepath) as pdf:
         text = "".join([page.get_text() for page in pdf.pages()])
+
+    if clean_pdf_text:
+        text = clean_raw_text_from_pdf(text)
 
     if txt_file_output:
         with open(txt_file_output, "w", encoding='utf-8') as txt_file:
