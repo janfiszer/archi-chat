@@ -131,7 +131,7 @@ class ArchiChat:
         Odpowiedź:"""
 
         response = self.llm.invoke([HumanMessage(content=prompt)])
-        return response.content
+        return response.text
 
 
 if __name__ == "__main__":

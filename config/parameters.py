@@ -8,6 +8,6 @@ NUM_CONTEXT_CHUNKS = 1  # most reasonable, and best tested for 1
 LLM_TEMPERATURE = 0.1
 
 EMBEDDING_MODEL = "gemini-embedding-001"
-LLM_MODEL = "gemini-2.0-flash"
+LLM_MODEL = "gemini-3.8-flash"
 
 LOG_REMOVED_PATTERNS = True
