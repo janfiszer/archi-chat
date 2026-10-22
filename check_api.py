@@ -4,13 +4,16 @@ import sys
 
 from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
 
-from config import local, parameters
+from dotenv import load_dotenv
+
+from config import parameters
 
 
 def main():
-    api_key = local.GENAI_API_KEY or os.environ.get("GOOGLE_API_KEY")
+    load_dotenv()
+    api_key = os.environ.get("GOOGLE_API_KEY")
     if not api_key:
-        print("FAIL: no API key - set GENAI_API_KEY in config/local.py or the GOOGLE_API_KEY env variable")
+        print("FAIL: no API key - set GOOGLE_API_KEY in .env or the environment")
         return 1
 
     failed = False

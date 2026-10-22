@@ -48,7 +48,7 @@ pip install -r requirements.txt
 
 Configure files in `./config`. 
 Most importantly: 
-1. Google api key: copy `config/local.example.py` to `config/local.py` and set `GENAI_API_KEY` (`config/local.py` is gitignored)
+1. Google api key: copy `.env.example` to `.env` and set `GOOGLE_API_KEY` (`.env` is gitignored)
 2. Input context file: `CONTEXT_FILEPATH` in `.config/paths.py` 
 
 The other parameters are tuned for current application, but feel free to experiment.   

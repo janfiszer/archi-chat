@@ -7,7 +7,9 @@ from langchain_community.vectorstores import FAISS
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain.messages import HumanMessage
 
-from config import local, keywords, parameters, paths
+from dotenv import load_dotenv
+
+from config import keywords, parameters, paths
 import example_questions
 from src import data_loading
 
@@ -141,7 +143,11 @@ if __name__ == "__main__":
     vectorstore_database_path = os.path.join(paths.VECTORSTORE_DIR, vectorstore_dir_name)
 
     # Initialize RAG
-    rag = ArchiChat(api_key=local.GENAI_API_KEY, vectorstore_path=vectorstore_database_path)
+    load_dotenv()
+    api_key = os.environ.get("GOOGLE_API_KEY")
+    if not api_key:
+        sys.exit("GOOGLE_API_KEY is not set - copy .env.example to .env and fill it in")
+    rag = ArchiChat(api_key=api_key, vectorstore_path=vectorstore_database_path)
 
     # Check if vector store exists, otherwise create it
     if os.path.exists(vectorstore_database_path):
